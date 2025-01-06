@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import android.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         val mediateka = findViewById<Button>(R.id.main_mediateka)
 
         val settings = findViewById<Button>(R.id.main_settings)
+
 
 
         search.setOnClickListener(object : View.OnClickListener {
