@@ -28,10 +28,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
-        android:paddingVetical="@dimen/settings_padding_vertical"
-
+        android:paddingVertical="@dimen/settings_padding_vertical"
+        android:layout_marginTop="24dp"
         android:text="Темная тема"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:thumbTint="@color/switch_thumb"
+        android:trackTint="@color/switch_track"/>
 
     <TextView
         android:layout_width="match_parent"
