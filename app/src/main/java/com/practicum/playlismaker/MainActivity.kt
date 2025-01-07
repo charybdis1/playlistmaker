@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
 
         val settings = findViewById<Button>(R.id.main_settings)
 
-
-
         search.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 // Toast.makeText(this@MainActivity, "Нажата кнопка 1", Toast.LENGTH_SHORT).show()
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, SearchActivity::class.java)
                 startActivity(intent)
             }
-
         })
 
         mediateka.setOnClickListener {
