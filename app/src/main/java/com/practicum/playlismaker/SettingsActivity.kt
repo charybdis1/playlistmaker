@@ -19,26 +19,25 @@ class SettingsActivity : AppCompatActivity() {
         share.setOnClickListener {
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
-                putExtra(Intent.EXTRA_TEXT, "https://practicum.yandex.ru/android-developer/?from=catalog")
+                putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_link_practicum))
                 type = "text/plain"
             }
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
-                val support= findViewById<View>(R.id.settings_support)
-        support.setOnClickListener{
+        val support = findViewById<View>(R.id.settings_support)
+        support.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
             intent.setData(Uri.parse("mailto:"))
-            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("kondratyuck.olga.1999@gmail.com"))
-            intent.putExtra(Intent.EXTRA_SUBJECT, "Сообщение разработчикам и разработчицам приложения Playlist Maker")
-            intent.putExtra(Intent.EXTRA_TEXT, "Спасибо за крутое приложение!")
-                                 startActivity(intent)
+            intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.settings_share_email)))
+            intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.settings_share_subject))
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.settings_share_text))
+            startActivity(intent)
         }
-                val agreement = findViewById<View>(R.id.settings_agreement)
-        agreement.setOnClickListener{
-            val url = "https://yandex.ru/legal/practicum_offer/"
+        val agreement = findViewById<View>(R.id.settings_agreement)
+        agreement.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(url)
+            intent.data = Uri.parse(getString(R.string.settings_share_link_agreement))
             startActivity(intent)
         }
     }

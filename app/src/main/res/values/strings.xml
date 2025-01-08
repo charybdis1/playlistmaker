@@ -11,4 +11,9 @@
     <string name="main_title_playlist_maker">Playlist maker</string>
     <string name="dark_theme">Темная тема</string>
     <string name="search">Поиск</string>
+    <string name="settings_share_link_practicum">https://practicum.yandex.ru/android-developer/?from=catalog</string>
+    <string name="settings_share_email">kondratyuck.olga.1999@gmail.com</string>
+    <string name="settings_share_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="settings_share_text">Спасибо за крутое приложение!</string>
+    <string name="settings_share_link_agreement">https://yandex.ru/legal/practicum_offer/</string>
 </resources>
