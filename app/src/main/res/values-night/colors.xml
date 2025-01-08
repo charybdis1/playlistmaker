@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="settings_toolbar">#ffffff</color>
-    <color name="settings_text_color">#1A1B22</color>
+    <color name="settings_toolbar">#1A1B22</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background_color">#3772E7</color>
+    <color name="background_color">#1A1B22</color>
     <color name="white_color">#ffffff</color>
     <color name="main_text_color">#1A1B22</color>
-    <color name="color_arrow_back">#1A1B22</color>
-    <color name="color_settings_icon">#AEAFB4</color>
+    <color name="settings_text_color">#ffffff</color>
+    <color name="color_arrow_back">#ffffff</color>
+    <color name="color_settings_icon">#ffffff</color>
     <color name="color_switch_thumb_checked">#3772E7</color>
     <color name="color_switch_track_checked">#9FBBF3</color>
     <color name="color_lite_gray">#E6E8EB</color>
     <color name="color_switch_thumb_unshecked">#AEAFB4</color>
-    <color name="search_color">#AEAFB4</color>
+    <color name="search_color">#1A1B22</color>
 </resources>

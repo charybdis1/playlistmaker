@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:backgroundTint="@color/white_color"
+        android:backgroundTint="@color/settings_toolbar"
+        android:fontFamily="@font/ys_display_medium"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:navigationIcon="@drawable/ic_arrow_back"
@@ -23,59 +24,34 @@
         android:layout_marginTop="24dp"
         android:paddingVertical="@dimen/settings_padding_vertical"
         android:paddingStart="16dp"
-        android:text="Темная тема"
+        android:text="@string/dark_theme"
         android:textSize="16sp"
         android:thumbTint="@color/switch_thumb"
-        android:trackTint="@color/switch_track" />
+        android:trackTint="@color/switch_track"
+        android:fontFamily="@font/ys_display_regular"/>
 
     <TextView
+        android:id="@+id/settings_share"
+        style="@style/SettingsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@color/white_color"
         android:drawableEnd="@drawable/ic_share"
-        android:gravity="start"
-        android:paddingVertical="@dimen/settings_padding_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="12dp"
-        android:text="@string/settings_share"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-
-        />
+        android:text="@string/settings_share" />
 
     <TextView
+        android:id="@+id/settings_support"
+        style="@style/SettingsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@color/white_color"
         android:drawableEnd="@drawable/ic_support"
-        android:gravity="start"
-        android:paddingVertical="@dimen/settings_padding_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="12dp"
-        android:text="@string/settings_support"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp"
-
-        />
+        android:text="@string/settings_support" />
 
     <TextView
+        android:id="@+id/settings_agreement"
+        style="@style/SettingsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:backgroundTint="@color/white_color"
         android:drawableEnd="@drawable/ic_arrow"
-        android:gravity="start"
-        android:paddingVertical="@dimen/settings_padding_vertical"
-        android:paddingStart="16dp"
-        android:paddingEnd="12dp"
-        android:text="@string/settings_agreement"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        android:textSize="16sp" />
-
+        android:text="@string/settings_agreement" />
 
 </LinearLayout>

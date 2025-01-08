@@ -7,5 +7,8 @@
     <string name="settings_support">Написать в поддержку</string>
     <string name="settings_agreement">Пользовательское соглашение</string>
     <string name="settings_title">Настройки</string>
+    <string name="search_title">Поиск</string>
     <string name="main_title_playlist_maker">Playlist maker</string>
+    <string name="dark_theme">Темная тема</string>
+    <string name="search">Поиск</string>
 </resources>
