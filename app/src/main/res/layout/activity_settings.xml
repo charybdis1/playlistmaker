@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/settings_toolbar"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
         android:backgroundTint="@color/settings_toolbar"
         android:fontFamily="@font/ys_display_medium"
         android:minHeight="?attr/actionBarSize"
@@ -22,13 +22,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/ys_display_regular"
         android:paddingVertical="@dimen/settings_padding_vertical"
         android:paddingStart="16dp"
         android:text="@string/dark_theme"
         android:textSize="16sp"
         android:thumbTint="@color/switch_thumb"
-        android:trackTint="@color/switch_track"
-        android:fontFamily="@font/ys_display_regular"/>
+        android:trackTint="@color/switch_track" />
 
     <TextView
         android:id="@+id/settings_share"
