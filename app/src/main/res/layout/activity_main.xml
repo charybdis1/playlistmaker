@@ -10,6 +10,7 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:fontFamily = "@font/ys_display_medium"
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -19,51 +20,35 @@
 
     <Button
         android:id="@+id/main_search"
+        style="@style/MainButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/padding"
         android:layout_weight="1"
-        android:backgroundTint="@color/white_color"
         android:text="@string/main_search"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        app:cornerRadius="@dimen/main_button_radius"
         app:icon="@drawable/ic_search"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/button_icon_padding"
-        app:iconTint="@color/text_color" />
+
+        />
 
     <Button
         android:id="@+id/main_mediateka"
+        style="@style/MainButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="@dimen/padding"
         android:layout_weight="1"
-        android:backgroundTint="@color/white_color"
         android:text="@string/main_mediateka"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        app:cornerRadius="@dimen/main_button_radius"
-        app:icon="@drawable/ic_note"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/button_icon_padding"
-        app:iconTint="@color/text_color" />
+        app:icon="@drawable/ic_note" />
 
     <Button
         android:id="@+id/main_settings"
+        style="@style/MainButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="0dp"
         android:layout_weight="1"
-        android:backgroundTint="@color/white_color"
         android:text="@string/main_settings"
-        android:textAllCaps="false"
-        android:textColor="@color/text_color"
-        app:cornerRadius="@dimen/main_button_radius"
-        app:icon="@drawable/ic_settings"
-        app:iconGravity="textStart"
-        app:iconPadding="@dimen/button_icon_padding"
-        app:iconTint="@color/text_color" />
+        app:icon="@drawable/ic_settings" />
 
 
 </LinearLayout>
