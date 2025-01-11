@@ -4,4 +4,7 @@
     <dimen name="button_icon_padding">8dp</dimen>
     <dimen name="padding">16dp</dimen>
     <dimen name="settings_padding_vertical">20dp</dimen>
+    <dimen name="track_cover_size">44dp</dimen>
+    <dimen name="track_vertical">8dp</dimen>
+    <dimen name="track_horizontal">12dp</dimen>
 </resources>

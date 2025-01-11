@@ -14,4 +14,6 @@
     <color name="color_lite_gray">#E6E8EB</color>
     <color name="color_switch_thumb_unshecked">#AEAFB4</color>
     <color name="search_color">#AEAFB4</color>
+    <color name="color_track_info">#AEAFB4</color>
+    <color name="track_name">#000000</color>
 </resources>

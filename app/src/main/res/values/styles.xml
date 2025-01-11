@@ -71,4 +71,17 @@
         </item>
     </style>
 
+    <style name="track_text">
+        <item name="fontFamily">
+            @font/ys_display_regular
+        </item>
+
+        <item name="android:ellipsize">
+            end
+        </item>
+        <item name="maxLines">
+            1
+        </item>
+
+    </style>
 </resources>
