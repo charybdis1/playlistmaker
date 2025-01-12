@@ -16,4 +16,7 @@
     <string name="settings_share_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="settings_share_text">Спасибо за крутое приложение!</string>
     <string name="settings_share_link_agreement">https://yandex.ru/legal/practicum_offer/</string>
+    <string name="search_error_empty">Ничего не нашлось</string>
+    <string name="search_error_network">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="refresh">Обновить</string>
 </resources>

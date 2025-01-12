@@ -7,4 +7,7 @@
     <dimen name="track_cover_size">44dp</dimen>
     <dimen name="track_vertical">8dp</dimen>
     <dimen name="track_horizontal">12dp</dimen>
+    <dimen name="search_error_margin_image">100dp</dimen>
+    <dimen name="search_error_margin_text">16dp</dimen>
+    <dimen name="search_error_margin_btn">24dp</dimen>
 </resources>
