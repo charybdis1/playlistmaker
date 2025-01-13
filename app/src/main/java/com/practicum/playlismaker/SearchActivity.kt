@@ -36,7 +36,12 @@ class SearchActivity : AppCompatActivity() {
         val historyClear = findViewById<View>(R.id.search_history_clear)
         val historyTitle = findViewById<View>(R.id.search_history_title)
 
-        errorLayout.visibility = View.GONE
+        fun hideError() {
+            errorLayout.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
+
+        hideError()
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         fun showTracks() {
@@ -84,6 +89,7 @@ class SearchActivity : AppCompatActivity() {
         })
         searchEditText?.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
+                hideError()
                 historyAdapter.update(searchHistory.getHistory())
                 showHistory()
             } else {
@@ -101,8 +107,7 @@ class SearchActivity : AppCompatActivity() {
             networkManager.getTracks(
                 search,
                 {
-                    recyclerView.visibility = View.VISIBLE
-                    errorLayout.visibility = View.GONE
+                    hideError()
                     tracksAdapter.update(it.results)
                 }, {
                     recyclerView.visibility = View.GONE
@@ -123,7 +128,7 @@ class SearchActivity : AppCompatActivity() {
                 })
         }
         errorRefreshButton.setOnClickListener {
-            errorLayout.visibility = View.GONE
+            hideError()
             search()
         }
 
@@ -142,6 +147,7 @@ class SearchActivity : AppCompatActivity() {
             tracksAdapter.update(emptyList())
             showHistory()
             hideKeyboard()
+            hideError()
         }
         historyClear.setOnClickListener {
             searchHistory.clear()
