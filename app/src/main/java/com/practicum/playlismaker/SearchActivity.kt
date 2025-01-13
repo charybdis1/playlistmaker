@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-
 class SearchActivity : AppCompatActivity() {
 
     private var searchString = ""
@@ -25,13 +24,41 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        val tracksAdapter = TracksAdapter()
+
+        val searchHistory = SearchHistory(getPrefs())
+        val tracksAdapter = TracksAdapter {
+            searchHistory.update(it)
+        }
+        val historyAdapter = TracksAdapter()
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val errorLayout = findViewById<View>(R.id.search_error)
+        val historyClear = findViewById<View>(R.id.search_history_clear)
+        val historyTitle = findViewById<View>(R.id.search_history_title)
+
         errorLayout.visibility = View.GONE
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = tracksAdapter
 
+        fun showTracks() {
+            recyclerView.adapter = tracksAdapter
+            historyClear.visibility = View.GONE
+            historyTitle.visibility = View.GONE
+        }
+
+        fun showHistory() {
+            val tracks = searchHistory.getHistory()
+            historyAdapter.update(tracks)
+            recyclerView.adapter = historyAdapter
+            if (tracks.isNotEmpty()) {
+                historyClear.visibility = View.VISIBLE
+                historyTitle.visibility = View.VISIBLE
+            } else {
+                historyTitle.visibility = View.GONE
+                historyClear.visibility = View.GONE
+            }
+        }
+
+        showTracks()
 
         val networkManager = NetworkManager()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -39,8 +66,9 @@ class SearchActivity : AppCompatActivity() {
             finish()
         }
 
-        searchEditText = findViewById<EditText>(R.id.search_edit_text)
+        searchEditText = findViewById(R.id.search_edit_text)
         val searchClear = findViewById<View>(R.id.search_clear)
+
         searchEditText?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -54,6 +82,14 @@ class SearchActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
             }
         })
+        searchEditText?.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                historyAdapter.update(searchHistory.getHistory())
+                showHistory()
+            } else {
+                showTracks()
+            }
+        }
 
         val errorText = findViewById<TextView>(R.id.search_error_tv)
         val errorImage = findViewById<ImageView>(R.id.search_error_iv)
@@ -94,16 +130,22 @@ class SearchActivity : AppCompatActivity() {
         searchEditText?.setOnEditorActionListener { _, actionId, _ ->
             Log.d("search", "action $actionId")
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                showTracks()
                 search()
-                true
+                return@setOnEditorActionListener true
             }
             false
         }
         searchClear.visibility = View.GONE
         searchClear.setOnClickListener {
             searchEditText?.text = null
-            recyclerView.visibility = View.GONE
+            tracksAdapter.update(emptyList())
+            showHistory()
             hideKeyboard()
+        }
+        historyClear.setOnClickListener {
+            searchHistory.clear()
+            showHistory()
         }
     }
 
