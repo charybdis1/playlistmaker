@@ -84,4 +84,22 @@
         </item>
 
     </style>
+
+    <style name="RoundButton" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:background">
+            @drawable/shape_button
+        </item>
+        <item name="android:fontFamily">
+            @font/ys_display_medium
+        </item>
+        <item name="textAllCaps">
+            false
+        </item>
+        <item name="android:textSize">
+            14sp
+        </item>
+        <item name="backgroundTint">
+            @color/black_white_text
+        </item>
+    </style>
 </resources>

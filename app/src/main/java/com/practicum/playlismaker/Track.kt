@@ -1,6 +1,7 @@
 package com.practicum.playlismaker
 
 data class Track(
+    val trackId: Long,
     val trackName: String,
     val artistName: String,
     val trackTimeMillis: Long,

@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,5 +42,14 @@ class SettingsActivity : AppCompatActivity() {
             intent.data = Uri.parse(getString(R.string.settings_share_link_agreement))
             startActivity(intent)
         }
+        val prefs = getPrefs()
+        val darkTheme = prefs.getBoolean(THEME_KEY, false)
+        val themeSwitch = findViewById<SwitchMaterial>(R.id.settings_switch)
+        themeSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            (applicationContext as App).switchTheme(isChecked)
+            prefs.edit().putBoolean(THEME_KEY, isChecked).apply()
+        }
+        themeSwitch.isChecked = darkTheme
+
     }
 }
