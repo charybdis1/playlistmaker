@@ -80,8 +80,13 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 searchString = s.toString()
-                if (s.isNullOrEmpty()) searchClear.visibility = View.GONE
-                else searchClear.visibility = View.VISIBLE
+                if (s.isNullOrEmpty()) {
+                    searchClear.visibility = View.GONE
+                    hideError()
+                    showHistory()
+                } else {
+                    searchClear.visibility = View.VISIBLE
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
