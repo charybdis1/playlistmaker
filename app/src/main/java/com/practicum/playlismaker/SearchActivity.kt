@@ -28,8 +28,11 @@ class SearchActivity : AppCompatActivity() {
         val searchHistory = SearchHistory(getPrefs())
         val tracksAdapter = TracksAdapter {
             searchHistory.update(it)
+            openPlayer(it.trackId)
         }
-        val historyAdapter = TracksAdapter()
+        val historyAdapter = TracksAdapter {
+            openPlayer(it.trackId)
+        }
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         val errorLayout = findViewById<View>(R.id.search_error)
@@ -177,6 +180,10 @@ class SearchActivity : AppCompatActivity() {
             val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    private fun openPlayer(trackId: Long) {
+        startActivity(PlayerActivity.newInstance(this, trackId))
     }
 
     companion object {

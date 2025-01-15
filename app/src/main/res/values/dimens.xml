@@ -10,4 +10,7 @@
     <dimen name="search_error_margin_image">100dp</dimen>
     <dimen name="search_error_margin_text">16dp</dimen>
     <dimen name="search_error_margin_btn">24dp</dimen>
+    <dimen name="player_margin_common">24dp</dimen>
+    <dimen name="player_margin_info_horiz">16dp</dimen>
+    <dimen name="player_margin_info_vert">8dp</dimen>
 </resources>
