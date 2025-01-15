@@ -18,7 +18,8 @@
         app:title="@string/settings_title" />
 
 
-    <Switch
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/settings_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -27,8 +28,8 @@
         android:paddingStart="16dp"
         android:text="@string/dark_theme"
         android:textSize="16sp"
-        android:thumbTint="@color/switch_thumb"
-        android:trackTint="@color/switch_track" />
+        app:thumbTint="@color/switch_thumb"
+        app:trackTint="@color/switch_track" />
 
     <TextView
         android:id="@+id/settings_share"

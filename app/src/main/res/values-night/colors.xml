@@ -14,7 +14,7 @@
     <color name="color_lite_gray">#E6E8EB</color>
     <color name="color_switch_thumb_unshecked">#AEAFB4</color>
     <color name="search_color">#1A1B22</color>
-    <color name="search_error">#FFF</color>
+    <color name="black_white_text">#FFF</color>
     <color name="track_name">#ffffff</color>
     <color name="color_track_info">#ffffff</color>
 </resources>

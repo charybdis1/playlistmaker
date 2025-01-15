@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:paddingHorizontal="@dimen/track_horizontal"
     android:paddingVertical="@dimen/track_vertical">
@@ -22,8 +23,8 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/track_text"
             android:id="@+id/track_name"
+            style="@style/track_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/track_name"
@@ -31,8 +32,8 @@
             tools:text="@tools:sample/lorem/random" />
 
         <TextView
-            style="@style/track_text"
             android:id="@+id/track_info"
+            style="@style/track_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_track_info"
