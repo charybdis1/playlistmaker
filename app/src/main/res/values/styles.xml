@@ -102,4 +102,32 @@
             @color/black_white_text
         </item>
     </style>
+
+    <style name="PlayerInfoGrayText">
+        <item name="fontFamily">
+            @font/ys_display_regular
+        </item>
+
+        <item name="android:textSize">
+            13sp
+        </item>
+
+        <item name="android:textColor">
+            @color/always_gray
+        </item>
+    </style>
+
+    <style name="PlayerInfoBlackWhiteText">
+        <item name="fontFamily">
+            @font/ys_display_regular
+        </item>
+
+        <item name="android:textSize">
+            13sp
+        </item>
+
+        <item name="android:textColor">
+            @color/black_white_text
+        </item>
+    </style>
 </resources>
