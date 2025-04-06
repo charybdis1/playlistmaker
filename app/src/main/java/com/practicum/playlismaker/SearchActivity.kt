@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -77,25 +78,7 @@ class SearchActivity : AppCompatActivity() {
         searchEditText = findViewById(R.id.search_edit_text)
         val searchClear = findViewById<View>(R.id.search_clear)
 
-        searchEditText?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                searchString = s.toString()
-                if (s.isNullOrEmpty()) {
-                    searchClear.visibility = View.GONE
-                    hideError()
-                    showHistory()
-                } else {
-                    searchClear.visibility = View.VISIBLE
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-            }
-        })
-        searchEditText?.setOnFocusChangeListener { v, hasFocus ->
+        searchEditText?.setOnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
                 hideError()
                 historyAdapter.update(searchHistory.getHistory())
@@ -108,17 +91,42 @@ class SearchActivity : AppCompatActivity() {
         val errorText = findViewById<TextView>(R.id.search_error_tv)
         val errorImage = findViewById<ImageView>(R.id.search_error_iv)
         val errorRefreshButton = findViewById<Button>(R.id.search_error_btn)
+        val progress = findViewById<ProgressBar>(R.id.search_progress)
+
+        fun showProgress() {
+            progress.visibility = View.VISIBLE
+        }
+
+        fun hideProgress() {
+            progress.visibility = View.GONE
+        }
+
+        fun showRecycler() {
+            recyclerView.visibility = View.VISIBLE
+        }
+
+        fun hideRecycler() {
+            recyclerView.visibility = View.GONE
+        }
+
+        hideProgress()
 
         fun search() {
             val search = searchEditText?.text?.toString().orEmpty().trim()
             if (search.isEmpty()) return
+            showProgress()
+            hideRecycler()
             networkManager.getTracks(
                 search,
-                {
+                action = {
+                    hideProgress()
                     hideError()
+                    showRecycler()
                     tracksAdapter.update(it.results)
-                }, {
-                    recyclerView.visibility = View.GONE
+                },
+                errorAction = {
+                    hideProgress()
+                    hideRecycler()
                     errorLayout.visibility = View.VISIBLE
                     when (it) {
                         NetworkManager.ErrorType.EMPTY_RESPONCE -> {
@@ -139,6 +147,33 @@ class SearchActivity : AppCompatActivity() {
             hideError()
             search()
         }
+
+        val searchDebounce = SearchDebounce {
+            hideError()
+            showTracks()
+            search()
+        }
+
+        searchEditText?.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                searchString = s.toString()
+                if (s.isNullOrEmpty()) {
+                    searchClear.visibility = View.GONE
+                    hideError()
+                    showHistory()
+                    searchDebounce.clear()
+                } else {
+                    searchClear.visibility = View.VISIBLE
+                    searchDebounce.run()
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
 
         searchEditText?.setOnEditorActionListener { _, actionId, _ ->
             Log.d("search", "action $actionId")

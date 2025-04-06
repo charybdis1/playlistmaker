@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +13,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
 class PlayerActivity : AppCompatActivity() {
+
+    private var player: Player? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
@@ -22,7 +26,7 @@ class PlayerActivity : AppCompatActivity() {
         val subtitle = findViewById<TextView>(R.id.player_subtitle)
         val btnAdd = findViewById<View>(R.id.player_btn_add)
         val btnFavorite = findViewById<View>(R.id.player_btn_favorite)
-        val btnPlay = findViewById<View>(R.id.player_btn_play)
+        val btnPlay = findViewById<ImageView>(R.id.player_btn_play)
         val trackTime = findViewById<TextView>(R.id.player_track_time)
         val trackInfoTime = findViewById<TextView>(R.id.player_track_info_time)
         val trackInfoAlbumTitle = findViewById<TextView>(R.id.player_track_info_album_title)
@@ -36,7 +40,28 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         val trackId = intent.extras!!.getLong(TRACK_ID_KEY)
-        val track = SearchHistory(getPrefs()).getHistory().find { it.trackId == trackId }!!
+        val sharedPrefs = getPrefs()
+        val track = SearchHistory(sharedPrefs).getHistory().find { it.trackId == trackId }!!
+        player = Player(
+            track,
+            sharedPrefs,
+            positionUpdateCallback = { trackTime.text = it },
+            stateUpdateCallback = {
+                Log.d("TAG", "onCreate: player state $it")
+                when (it) {
+                    Player.State.STATE_PREPARED -> {
+                        btnPlay.setImageResource(R.drawable.btn_player_play)
+                        btnPlay.isEnabled = true
+                    }
+                    Player.State.STATE_PLAYING ->
+                        btnPlay.setImageResource(R.drawable.btn_player_pause)
+                    Player.State.STATE_PAUSED ->
+                        btnPlay.setImageResource(R.drawable.btn_player_play)
+                    else -> {}
+                }
+            }
+        )
+        player?.preparePlayer()
 
         Glide.with(this)
             .load(getCoverArtwork(track))
@@ -47,7 +72,7 @@ class PlayerActivity : AppCompatActivity() {
 
         title.text = track.trackName
         subtitle.text = track.artistName
-        trackTime.text = "0:00"
+        trackTime.text = getString(R.string.player_zero_time)
         trackInfoTime.text = formatTime(track)
         val collectionName = track.collectionName
         if (collectionName != null) {
@@ -61,6 +86,18 @@ class PlayerActivity : AppCompatActivity() {
         trackInfoGenre.text = track.primaryGenreName
         trackInfoCountry.text = track.country
         trackInfoYear.text = formatYear(track)
+        btnPlay.setOnClickListener { player?.playbackControl() }
+        btnPlay.isEnabled = false
+    }
+
+    override fun onPause() {
+        super.onPause()
+        player?.pausePlayer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        player?.release()
     }
 
     companion object {

@@ -24,7 +24,9 @@ class TracksAdapter(
     override fun onBindViewHolder(holder: TracksViewHolder, position: Int) {
         val track = tracks[position]
         holder.bind(track)
-        holder.itemView.setOnClickListener { itemClickListener?.invoke(track) }
+        holder.itemView.setOnClickListener {
+            if (clickDebounce()) itemClickListener?.invoke(track)
+        }
     }
 
     override fun getItemCount(): Int {
