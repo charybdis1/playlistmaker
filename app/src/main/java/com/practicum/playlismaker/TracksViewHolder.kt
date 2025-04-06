@@ -19,8 +19,7 @@ class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(model: Track) {
         trackName.text = model.trackName
-        val time = SimpleDateFormat("mm:ss", Locale.getDefault())
-            .format(model.trackTimeMillis)
+        val time = formatTime(model)
         trackInfo.text = "${model.artistName} • $time"
 
         Glide.with(trackCover)
@@ -29,13 +28,5 @@ class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             .centerCrop()
             .transform(RoundedCorners(dpToPx(2f, trackCover.context)))
             .into(trackCover)
-    }
-
-    private fun dpToPx(dp: Float, context: Context): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            dp,
-            context.resources.displayMetrics
-        ).toInt()
     }
 }
