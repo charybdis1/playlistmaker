@@ -9,7 +9,6 @@
     <color name="settings_text_color">#ffffff</color>
     <color name="color_arrow_back">#ffffff</color>
     <color name="color_settings_icon">#ffffff</color>
-    <color name="color_switch_thumb_checked">#3772E7</color>
     <color name="color_switch_track_checked">#9FBBF3</color>
     <color name="color_lite_gray">#E6E8EB</color>
     <color name="color_switch_thumb_unshecked">#AEAFB4</color>
