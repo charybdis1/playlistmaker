@@ -2,6 +2,8 @@ package com.practicum.playlismaker
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Handler
+import android.os.Looper
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
@@ -33,4 +35,35 @@ fun formatYear(model: Track): String? {
     return simpleDateFormat.format(parse)
 }
 
-fun getCoverArtwork(track: Track) = track.artworkUrl100.replaceAfterLast('/',"512x512bb.jpg")
+fun getCoverArtwork(track: Track) = track.artworkUrl100.replaceAfterLast('/', "512x512bb.jpg")
+
+private const val CLICK_DEBOUNCE_DELAY = 1000L
+private var isClickAllowed = true
+private val handler = Handler(Looper.getMainLooper())
+
+fun clickDebounce(): Boolean {
+    val current = isClickAllowed
+    if (isClickAllowed) {
+        isClickAllowed = false
+        handler.postDelayed({ isClickAllowed = true }, CLICK_DEBOUNCE_DELAY)
+    }
+    return current
+}
+
+class SearchDebounce(private val searchRequest: ()-> Unit){
+
+    private val searchRunnable = Runnable { searchRequest() }
+
+    fun run() {
+        clear()
+        handler.postDelayed(searchRunnable, SEARCH_DEBOUNCE_DELAY)
+    }
+
+    fun clear() {
+        handler.removeCallbacks(searchRunnable)
+    }
+
+    companion object {
+        private const val SEARCH_DEBOUNCE_DELAY = 2000L
+    }
+}
