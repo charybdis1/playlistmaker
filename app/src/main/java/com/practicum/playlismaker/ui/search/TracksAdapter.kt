@@ -1,8 +1,11 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.practicum.playlismaker.R
+import com.practicum.playlismaker.domain.models.Track
+import com.practicum.playlismaker.ui.clickDebounce
 
 class TracksAdapter(
     private val itemClickListener: ((Track) -> Unit)? = null

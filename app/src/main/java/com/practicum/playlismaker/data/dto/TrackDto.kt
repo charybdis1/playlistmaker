@@ -1,6 +1,6 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.data.dto
 
-data class Track(
+data class TrackDto(
     val trackId: Long,
     val trackName: String,
     val artistName: String,

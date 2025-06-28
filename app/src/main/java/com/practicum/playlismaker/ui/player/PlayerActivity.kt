@@ -1,16 +1,23 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.player
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.practicum.playlismaker.R
+import com.practicum.playlismaker.data.SearchHistory
+import com.practicum.playlismaker.ui.dpToPx
+import com.practicum.playlismaker.ui.formatTime
+import com.practicum.playlismaker.ui.formatYear
+import com.practicum.playlismaker.ui.getCoverArtwork
+import com.practicum.playlismaker.ui.getPrefs
 
 class PlayerActivity : AppCompatActivity() {
 

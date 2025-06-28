@@ -1,4 +1,4 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlismaker.domain.models.Track
 import java.text.SimpleDateFormat
 import java.util.Locale
 

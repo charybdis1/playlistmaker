@@ -1,6 +1,7 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.data.network
 
 import android.util.Log
+import com.practicum.playlismaker.data.dto.ITunesResponseDto
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,15 +18,15 @@ class NetworkManager {
     private val iTunesApiService: ITunesApiService = retrofit.create()
     fun getTracks(
         search: String,
-        action: (ITunesResponse) -> Unit,
+        action: (ITunesResponseDto) -> Unit,
         errorAction: (ErrorType) -> Unit
     ) {
         val tag = "network"
         Log.d(tag,"getTracks $search")
-        iTunesApiService.search(search).enqueue(object : Callback<ITunesResponse> {
+        iTunesApiService.search(search).enqueue(object : Callback<ITunesResponseDto> {
             override fun onResponse(
-                call: Call<ITunesResponse>,
-                response: Response<ITunesResponse>
+                call: Call<ITunesResponseDto>,
+                response: Response<ITunesResponseDto>
             ) {
                 Log.d(tag,"onResponse")
                 val body = response.body()
@@ -44,7 +45,7 @@ class NetworkManager {
                 }
             }
 
-            override fun onFailure(call: Call<ITunesResponse>, t: Throwable) {
+            override fun onFailure(call: Call<ITunesResponseDto>, t: Throwable) {
                 Log.d(tag,"onFailure")
                 t.printStackTrace()
                 errorAction(ErrorType.RESPONCE_ERROR)

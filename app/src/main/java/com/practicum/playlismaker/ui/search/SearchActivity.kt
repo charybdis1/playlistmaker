@@ -1,4 +1,4 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.search
 
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +16,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.practicum.playlismaker.R
+import com.practicum.playlismaker.data.network.NetworkManager
+import com.practicum.playlismaker.data.SearchHistory
+import com.practicum.playlismaker.ui.player.PlayerActivity
+import com.practicum.playlismaker.ui.SearchDebounce
+import com.practicum.playlismaker.ui.getPrefs
 
 class SearchActivity : AppCompatActivity() {
 

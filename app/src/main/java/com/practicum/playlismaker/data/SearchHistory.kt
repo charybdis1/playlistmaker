@@ -1,8 +1,9 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.data
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.practicum.playlismaker.domain.models.Track
 
 private const val SEARCHHISTORYKEY = "SEARCHHISTORYKEY"
 
