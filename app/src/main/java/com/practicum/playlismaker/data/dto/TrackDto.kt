@@ -11,4 +11,4 @@ data class TrackDto(
     val country: String,
     val primaryGenreName: String,
     val previewUrl: String
-)
+): BaseResponse()

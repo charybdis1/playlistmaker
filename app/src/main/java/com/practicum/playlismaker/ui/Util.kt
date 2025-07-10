@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
+import com.practicum.playlismaker.data.dto.TrackDto
 import com.practicum.playlismaker.domain.models.Track
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -27,8 +28,8 @@ fun dpToPx(dp: Float, context: Context): Int {
     ).toInt()
 }
 
-fun formatTime(model: Track): String? =
-    SimpleDateFormat("mm:ss", Locale.getDefault()).format(model.trackTimeMillis)
+fun TrackDto.formatTime(): String =
+    SimpleDateFormat("mm:ss", Locale.getDefault()).format(this.trackTimeMillis)
 
 fun formatYear(model: Track): String? {
     val simpleDateFormat = SimpleDateFormat("yyyy", Locale.getDefault())

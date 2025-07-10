@@ -19,7 +19,7 @@ class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(model: Track) {
         trackName.text = model.trackName
-        val time = formatTime(model)
+        val time = model.trackTime
         trackInfo.text = "${model.artistName} • $time"
 
         Glide.with(trackCover)

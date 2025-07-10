@@ -80,7 +80,7 @@ class PlayerActivity : AppCompatActivity() {
         title.text = track.trackName
         subtitle.text = track.artistName
         trackTime.text = getString(R.string.player_zero_time)
-        trackInfoTime.text = formatTime(track)
+        trackInfoTime.text = track.trackTime
         val collectionName = track.collectionName
         if (collectionName != null) {
             trackInfoAlbumTitle.visibility = View.VISIBLE
