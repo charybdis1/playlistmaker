@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.practicum.playlismaker.Creator
 import com.practicum.playlismaker.R
-import com.practicum.playlismaker.data.SearchHistory
 import com.practicum.playlismaker.domain.api.TracksInteractor
 import com.practicum.playlismaker.domain.models.Track
 import com.practicum.playlismaker.ui.SearchDebounce
@@ -34,7 +33,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val searchHistory = SearchHistory(getPrefs())
+        val searchHistory = Creator.provideSearchHistoryInteractor(getPrefs())
         val tracksAdapter = TracksAdapter {
             searchHistory.update(it)
             openPlayer(it.trackId)

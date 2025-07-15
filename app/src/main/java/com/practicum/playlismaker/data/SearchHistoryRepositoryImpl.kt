@@ -3,14 +3,16 @@ package com.practicum.playlismaker.data
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.practicum.playlismaker.domain.api.SearchHistoryRepository
 import com.practicum.playlismaker.domain.models.Track
 
 private const val SEARCHHISTORYKEY = "SEARCHHISTORYKEY"
 
-class SearchHistory(private val sharedPrefs: SharedPreferences) {
+class SearchHistoryRepositoryImpl(private val sharedPrefs: SharedPreferences) :
+    SearchHistoryRepository {
 
     private val gson = Gson()
-    fun update(track: Track) {
+    override fun update(track: Track) {
         val history = getHistory()
         history.remove(track)
         history.add(0, track)
@@ -19,13 +21,13 @@ class SearchHistory(private val sharedPrefs: SharedPreferences) {
         sharedPrefs.edit().putString(SEARCHHISTORYKEY, historyOutString).apply()
     }
 
-    fun getHistory(): MutableList<Track> {
+    override fun getHistory(): MutableList<Track> {
         val historyString = sharedPrefs.getString(SEARCHHISTORYKEY, "")
         val itemType = object : TypeToken<List<Track>>() {}.type
         return gson.fromJson<List<Track>>(historyString, itemType).orEmpty().toMutableList()
     }
 
-    fun clear() {
+    override fun clear() {
         sharedPrefs.edit().remove(SEARCHHISTORYKEY).apply()
     }
 }

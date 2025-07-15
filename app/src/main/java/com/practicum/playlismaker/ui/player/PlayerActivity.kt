@@ -11,10 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.practicum.playlismaker.Creator
 import com.practicum.playlismaker.R
-import com.practicum.playlismaker.data.SearchHistory
 import com.practicum.playlismaker.ui.dpToPx
-import com.practicum.playlismaker.ui.formatTime
 import com.practicum.playlismaker.ui.formatYear
 import com.practicum.playlismaker.ui.getCoverArtwork
 import com.practicum.playlismaker.ui.getPrefs
@@ -48,7 +47,8 @@ class PlayerActivity : AppCompatActivity() {
 
         val trackId = intent.extras!!.getLong(TRACK_ID_KEY)
         val sharedPrefs = getPrefs()
-        val track = SearchHistory(sharedPrefs).getHistory().find { it.trackId == trackId }!!
+        val searchHistory = Creator.provideSearchHistoryInteractor(getPrefs())
+        val track = searchHistory.getHistory().find { it.trackId == trackId }!!
         player = Player(
             track,
             sharedPrefs,
