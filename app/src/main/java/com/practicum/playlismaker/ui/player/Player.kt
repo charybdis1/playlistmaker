@@ -1,10 +1,11 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.player
 
 import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.practicum.playlismaker.domain.models.Track
 import java.text.SimpleDateFormat
 import java.util.Locale
 

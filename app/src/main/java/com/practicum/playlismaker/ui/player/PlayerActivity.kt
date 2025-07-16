@@ -1,16 +1,22 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.player
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.practicum.playlismaker.Creator
+import com.practicum.playlismaker.R
+import com.practicum.playlismaker.ui.dpToPx
+import com.practicum.playlismaker.ui.formatYear
+import com.practicum.playlismaker.ui.getCoverArtwork
+import com.practicum.playlismaker.ui.getPrefs
 
 class PlayerActivity : AppCompatActivity() {
 
@@ -41,7 +47,8 @@ class PlayerActivity : AppCompatActivity() {
 
         val trackId = intent.extras!!.getLong(TRACK_ID_KEY)
         val sharedPrefs = getPrefs()
-        val track = SearchHistory(sharedPrefs).getHistory().find { it.trackId == trackId }!!
+        val searchHistory = Creator.provideSearchHistoryInteractor(getPrefs())
+        val track = searchHistory.getHistory().find { it.trackId == trackId }!!
         player = Player(
             track,
             sharedPrefs,
@@ -73,7 +80,7 @@ class PlayerActivity : AppCompatActivity() {
         title.text = track.trackName
         subtitle.text = track.artistName
         trackTime.text = getString(R.string.player_zero_time)
-        trackInfoTime.text = formatTime(track)
+        trackInfoTime.text = track.trackTime
         val collectionName = track.collectionName
         if (collectionName != null) {
             trackInfoAlbumTitle.visibility = View.VISIBLE

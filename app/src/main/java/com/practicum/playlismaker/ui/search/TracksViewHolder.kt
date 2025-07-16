@@ -1,15 +1,15 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.search
 
-import android.content.Context
-import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.practicum.playlismaker.R
+import com.practicum.playlismaker.domain.models.Track
+import com.practicum.playlismaker.ui.dpToPx
+import com.practicum.playlismaker.ui.formatTime
 
 class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -19,7 +19,7 @@ class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(model: Track) {
         trackName.text = model.trackName
-        val time = formatTime(model)
+        val time = model.trackTime
         trackInfo.text = "${model.artistName} • $time"
 
         Glide.with(trackCover)

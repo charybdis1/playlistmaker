@@ -1,4 +1,4 @@
-package com.practicum.playlismaker
+package com.practicum.playlismaker.ui.search
 
 import android.os.Bundle
 import android.text.Editable
@@ -16,6 +16,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.practicum.playlismaker.Creator
+import com.practicum.playlismaker.R
+import com.practicum.playlismaker.domain.api.TracksInteractor
+import com.practicum.playlismaker.domain.models.Track
+import com.practicum.playlismaker.ui.SearchDebounce
+import com.practicum.playlismaker.ui.getPrefs
+import com.practicum.playlismaker.ui.player.PlayerActivity
 
 class SearchActivity : AppCompatActivity() {
 
@@ -26,7 +33,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        val searchHistory = SearchHistory(getPrefs())
+        val searchHistory = Creator.provideSearchHistoryInteractor(getPrefs())
         val tracksAdapter = TracksAdapter {
             searchHistory.update(it)
             openPlayer(it.trackId)
@@ -69,7 +76,7 @@ class SearchActivity : AppCompatActivity() {
 
         showTracks()
 
-        val networkManager = NetworkManager()
+        val interactor = Creator.provideTracksInteractor()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.setOnClickListener {
             finish()
@@ -116,7 +123,18 @@ class SearchActivity : AppCompatActivity() {
             if (search.isEmpty()) return
             showProgress()
             hideRecycler()
-            networkManager.getTracks(
+            interactor.searchTracks(search, object : TracksInteractor.TracksConsumer {
+                override fun consume(tracks: List<Track>) {
+                    runOnUiThread {
+                        hideProgress()
+                        hideError()
+                        showRecycler()
+                        tracksAdapter.update(tracks)
+                    }
+                }
+            })
+
+            /*networkManager.getTracks(
                 search,
                 action = {
                     hideProgress()
@@ -129,19 +147,19 @@ class SearchActivity : AppCompatActivity() {
                     hideRecycler()
                     errorLayout.visibility = View.VISIBLE
                     when (it) {
-                        NetworkManager.ErrorType.EMPTY_RESPONCE -> {
+                        RetrofitNetworkManager.ErrorType.EMPTY_RESPONCE -> {
                             errorImage.setImageResource(R.drawable.ic_search_error_empty)
                             errorText.setText(R.string.search_error_empty)
                             errorRefreshButton.visibility = View.GONE
                         }
 
-                        NetworkManager.ErrorType.RESPONCE_ERROR -> {
+                        RetrofitNetworkManager.ErrorType.RESPONCE_ERROR -> {
                             errorImage.setImageResource(R.drawable.ic_search_error_network)
                             errorText.setText(R.string.search_error_network)
                             errorRefreshButton.visibility = View.VISIBLE
                         }
                     }
-                })
+                })*/
         }
         errorRefreshButton.setOnClickListener {
             hideError()
