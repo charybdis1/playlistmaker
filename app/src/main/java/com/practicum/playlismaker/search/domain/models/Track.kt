@@ -1,16 +1,14 @@
-package com.practicum.playlismaker.data.dto
+package com.practicum.playlismaker.search.domain.models
 
-import com.practicum.playlismaker.base.data.dto.BaseResponse
-
-data class TrackDto(
+data class Track(
     val trackId: Long,
     val trackName: String,
     val artistName: String,
-    val trackTimeMillis: Long,
+    val trackTime: String,
     val artworkUrl100: String,
     val collectionName: String?,
     val releaseDate: String,
     val country: String,
     val primaryGenreName: String,
     val previewUrl: String
-): BaseResponse()
+)

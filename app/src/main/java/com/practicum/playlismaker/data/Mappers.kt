@@ -1,8 +1,8 @@
 package com.practicum.playlismaker.data
 
 import com.practicum.playlismaker.data.dto.TrackDto
-import com.practicum.playlismaker.domain.models.Track
-import com.practicum.playlismaker.ui.formatTime
+import com.practicum.playlismaker.search.domain.models.Track
+import com.practicum.playlismaker.util.formatTime
 
 fun TrackDto.getTrack() = Track(
     trackId,
