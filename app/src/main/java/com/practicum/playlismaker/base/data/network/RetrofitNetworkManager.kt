@@ -11,6 +11,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
+import java.io.IOException
 
 class RetrofitNetworkManager : NetworkManager {
     private val retrofit = Retrofit.Builder()
@@ -22,9 +23,14 @@ class RetrofitNetworkManager : NetworkManager {
 
     override fun doRequest(dto: Any): BaseResponse = when (dto) {
         is TracksSearchRequest -> {
-            val resp = iTunesApiService.search(dto.search).execute()
-            val body = resp.body() ?: BaseResponse()
-            body.apply { resultCode = resp.code() }
+            try {
+                val resp = iTunesApiService.search(dto.search).execute()
+                val body = resp.body() ?: BaseResponse()
+                body.apply { resultCode = resp.code() }
+            } catch (e: IOException) {
+                Log.w("RetrofitNetworkManager", e)
+                BaseResponse().apply { resultCode = -1 }
+            }
         }
 
         else -> {
