@@ -1,4 +1,4 @@
-package com.practicum.playlismaker.data.dto
+package com.practicum.playlismaker.search.data.dto
 
 import com.practicum.playlismaker.base.data.dto.BaseResponse
 

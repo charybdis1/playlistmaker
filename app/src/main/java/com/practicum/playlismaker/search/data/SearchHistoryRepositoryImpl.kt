@@ -1,4 +1,4 @@
-package com.practicum.playlismaker.data
+package com.practicum.playlismaker.search.data
 
 import android.content.SharedPreferences
 import com.google.gson.Gson

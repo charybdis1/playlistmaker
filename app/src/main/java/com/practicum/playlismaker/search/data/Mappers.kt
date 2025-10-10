@@ -1,6 +1,6 @@
-package com.practicum.playlismaker.data
+package com.practicum.playlismaker.search.data
 
-import com.practicum.playlismaker.data.dto.TrackDto
+import com.practicum.playlismaker.search.data.dto.TrackDto
 import com.practicum.playlismaker.search.domain.models.Track
 import com.practicum.playlismaker.util.formatTime
 

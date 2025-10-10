@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.TypedValue
 import androidx.appcompat.app.AppCompatActivity
-import com.practicum.playlismaker.data.dto.TrackDto
+import com.practicum.playlismaker.search.data.dto.TrackDto
 import com.practicum.playlismaker.search.domain.models.Track
 import java.text.SimpleDateFormat
 import java.util.Locale
