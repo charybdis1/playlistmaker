@@ -1,6 +1,6 @@
 package com.practicum.playlismaker.search.data
 
-import com.practicum.playlismaker.base.data.NetworkManager
+import com.practicum.playlismaker.search.data.NetworkManager
 import com.practicum.playlismaker.search.data.dto.ITunesResponseDto
 import com.practicum.playlismaker.search.data.dto.TracksSearchRequest
 import com.practicum.playlismaker.search.domain.api.TracksRepository

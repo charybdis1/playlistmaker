@@ -1,8 +1,8 @@
-package com.practicum.playlismaker.base.data.network
+package com.practicum.playlismaker.search.data.network
 
 import android.util.Log
-import com.practicum.playlismaker.base.data.NetworkManager
-import com.practicum.playlismaker.base.data.dto.BaseResponse
+import com.practicum.playlismaker.search.data.NetworkManager
+import com.practicum.playlismaker.search.data.dto.BaseResponse
 import com.practicum.playlismaker.search.data.dto.ITunesResponseDto
 import com.practicum.playlismaker.search.data.dto.TracksSearchRequest
 import retrofit2.Call
