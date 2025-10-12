@@ -2,8 +2,8 @@ package com.practicum.playlismaker
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import com.practicum.playlismaker.ui.THEME_KEY
-import com.practicum.playlismaker.ui.getPrefs
+import com.practicum.playlismaker.util.THEME_KEY
+import com.practicum.playlismaker.util.getPrefs
 
 class App : Application() {
 
